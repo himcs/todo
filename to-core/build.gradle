@@ -1,0 +1,13 @@
+style {
+    excludePackages = [
+    ]
+    excludeClasses = [
+    ]
+}
+
+coverage {
+    excludePackages = [
+    ]
+    excludeClasses = [
+    ]
+}
