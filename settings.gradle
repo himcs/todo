@@ -1,3 +1,4 @@
 rootProject.name = 'todo'
-include 'to-core'
+include 'todo-core'
+include 'todo-cli'
 

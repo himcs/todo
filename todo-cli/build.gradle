@@ -1,0 +1,21 @@
+style {
+    excludePackages = [
+    ]
+    excludeClasses = [
+            'io.github.himcs.todo.cli.BootStrap'
+    ]
+}
+
+coverage {
+    excludePackages = [
+    ]
+    excludeClasses = [
+            'io.github.himcs.todo.cli.util.Jsons',
+            'io.github.himcs.todo.cli.BootStrap'
+    ]
+}
+
+project.dependencies {
+    implementation("info.picocli:picocli:$picocliVersion")
+    implementation(project(':todo-core'))
+}
