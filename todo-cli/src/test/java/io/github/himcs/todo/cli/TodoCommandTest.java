@@ -63,7 +63,7 @@ class TodoCommandTest {
     @Test
     public void should_mark_todo_item_done() {
         TodoItem todoItem = service.addTodoItem(new TodoParameter("miao"));
-        int result = cli.execute("done", String.valueOf(todoItem.getId()));
+        int result = cli.execute("done", String.valueOf(todoItem.getIndex()));
         assertThat(result).isEqualTo(0);
         List<TodoItem> todoItems = service.listItem(true);
         assertThat(todoItems.get(0).getContent()).isEqualTo("miao");
@@ -96,7 +96,7 @@ class TodoCommandTest {
         service.addTodoItem(new TodoParameter("miao"));
         TodoItem todoItem = service.addTodoItem(new TodoParameter("miao2"));
         service.addTodoItem(new TodoParameter("miao3"));
-        service.markTodoItemDone(new TodoIndexParameter(todoItem.getId()));
+        service.markTodoItemDone(new TodoIndexParameter(todoItem.getIndex()));
 
         assertThat(cli.execute("list","-a")).isEqualTo(0);
     }

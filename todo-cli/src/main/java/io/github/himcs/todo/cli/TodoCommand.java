@@ -35,8 +35,8 @@ public class TodoCommand {
             throw new CommandLine.ParameterException(spec.commandLine(), "empty item is not allowed");
         }
         final TodoItem todoItem = todoService.addTodoItem(new TodoParameter(context));
-        System.out.printf("%s. %s\n", todoItem.getId(), todoItem.getContent());
-        System.out.printf("Item %s added\n", todoItem.getId());
+        System.out.printf("%s. %s\n", todoItem.getIndex(), todoItem.getContent());
+        System.out.printf("Item %s added\n", todoItem.getIndex());
         return 0;
     }
 
@@ -81,7 +81,7 @@ public class TodoCommand {
     public int list(@CommandLine.Option(names = {"-a", "-all"}, description = "list all") final boolean all) {
         List<TodoItem> todoItems = todoService.listItem(all);
         for (TodoItem todoItem : todoItems) {
-            System.out.printf("%s. %s\n", todoItem.getId(), todoItem.getContent());
+            System.out.printf("%s. %s\n", todoItem.getIndex(), todoItem.getContent());
         }
         System.out.printf("Total: %d items\n", todoItems.size());
         return 0;

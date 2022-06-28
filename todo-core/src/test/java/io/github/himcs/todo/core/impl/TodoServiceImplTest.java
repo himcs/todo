@@ -45,7 +45,7 @@ class TodoServiceImplTest {
     @Test
     public void should_mark_todo_item_done() {
         TodoItem todoItem1 = new TodoItem("123");
-        todoItem1.setId(1);
+        todoItem1.setIndex(1);
         when(todoItemRepository.findAll()).thenReturn(ImmutableList.of(todoItem1));
         when(todoItemRepository.save(any())).then(returnsFirstArg());
         Optional<TodoItem> todoItem = todoService.markTodoItemDone(new TodoIndexParameter(1));
@@ -71,16 +71,16 @@ class TodoServiceImplTest {
     @Test
     public void should_list_all_item() {
         TodoItem todoItem1 = new TodoItem("foo");
-        todoItem1.setId(1);
+        todoItem1.setIndex(1);
         todoItem1.setDone(false);
         TodoItem todoItem2 = new TodoItem("bar");
-        todoItem2.setId(2);
+        todoItem2.setIndex(2);
         todoItem2.setDone(true);
 
         when(todoItemRepository.findAll()).thenReturn(ImmutableList.of(todoItem1, todoItem2));
         List<TodoItem> todoItems = todoService.listItem(false);
         TodoItem todoItem = todoItems.get(0);
-        assertThat(todoItem.getId()).isEqualTo(1);
+        assertThat(todoItem.getIndex()).isEqualTo(1);
         assertThat(todoItem.getContent()).isEqualTo("foo");
         assertThat(todoItem.isDone()).isEqualTo(false);
     }

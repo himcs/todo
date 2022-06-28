@@ -44,7 +44,7 @@ class FileTodoItemRepositoryTest {
         Iterable<TodoItem> all = repository.findAll();
         List<TodoItem> collect = StreamSupport.stream(all.spliterator(), false).collect(Collectors.toList());
         TodoItem todoItem1 = collect.get(0);
-        assertThat(todoItem1.getId()).isEqualTo(1L);
+        assertThat(todoItem1.getIndex()).isEqualTo(1L);
         assertThat(todoItem1.getContent()).isEqualTo("foo");
     }
 
@@ -54,16 +54,16 @@ class FileTodoItemRepositoryTest {
         TodoItem todoItem2 = new TodoItem("bar");
         TodoItem todoItem1 = repository.save(todoItem);
         TodoItem todoItem22 = repository.save(todoItem2);
-        assertThat(todoItem1.getId()).isEqualTo(1L);
+        assertThat(todoItem1.getIndex()).isEqualTo(1L);
         assertThat(todoItem1.getContent()).isEqualTo("foo");
         assertThat(todoItem1.isDone()).isEqualTo(false);
-        assertThat(todoItem22.getId()).isEqualTo(2L);
+        assertThat(todoItem22.getIndex()).isEqualTo(2L);
         assertThat(todoItem22.getContent()).isEqualTo("bar");
         assertThat(todoItem22.isDone()).isEqualTo(false);
 
         todoItem1.setDone(true);
         TodoItem save = repository.save(todoItem1);
-        assertThat(save.getId()).isEqualTo(1L);
+        assertThat(save.getIndex()).isEqualTo(1L);
         assertThat(save.getContent()).isEqualTo("foo");
         assertThat(save.isDone()).isEqualTo(true);
 

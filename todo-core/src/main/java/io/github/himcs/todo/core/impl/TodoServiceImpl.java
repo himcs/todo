@@ -33,7 +33,7 @@ public class TodoServiceImpl implements TodoService {
         Iterable<TodoItem> all = this.todoItemRepository.findAll();
         Optional<TodoItem> todoItem = StreamSupport.stream(all.spliterator(), false)
                 .filter(
-                        element -> element.getId() == todoIndexParameter.getIndex()
+                        element -> element.getIndex() == todoIndexParameter.getIndex()
                 ).findFirst();
         return todoItem.flatMap(e -> {
             e.setDone(true);

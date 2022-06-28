@@ -31,13 +31,13 @@ public class FileTodoItemRepository implements TodoItemRepository {
 
     private Iterable<TodoItem> getSaveContent(final TodoItem todoItem) {
         Iterable<TodoItem> todoItemIterable = findAll();
-        if (todoItem.getId() == 0) {
+        if (todoItem.getIndex() == 0) {
             long newIndex = Iterables.size(todoItemIterable) + 1;
-            todoItem.setId(newIndex);
+            todoItem.setIndex(newIndex);
             return ImmutableList.<TodoItem>builder().addAll(todoItemIterable).add(todoItem).build();
         }
         return StreamSupport.stream(todoItemIterable.spliterator(), false).map(
-                element -> element.getId() == todoItem.getId() ? todoItem : element
+                element -> element.getIndex() == todoItem.getIndex() ? todoItem : element
         ).collect(Collectors.toList());
     }
 

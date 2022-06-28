@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TodoItem {
     @Setter
-    private long id;
+    private long index;
     private String content;
     @Setter
     private boolean done;
