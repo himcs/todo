@@ -1,0 +1,51 @@
+buildscript {
+    dependencies {
+        classpath "mysql:mysql-connector-java:$mysqlVersion"
+        classpath "org.flywaydb:flyway-mysql:$flywayVersion"
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id "org.flywaydb.flyway" version "${flywayVersion}"
+}
+
+flyway () {
+    url = 'jdbc:mysql://k.io:3306/todo_dev'
+    user = 'todo'
+    password = 'todo_dev'
+    locations = ["filesystem:$rootDir/gradle/config/migration"]
+}
+
+style {
+    excludePackages = [
+    ]
+    excludeClasses = [
+            "io.github.himcs.todo.api.Bootstrap"
+    ]
+}
+
+coverage {
+    excludePackages = [
+    ]
+    excludeClasses = [
+            "io.github.himcs.todo.api.Bootstrap"
+    ]
+}
+
+dependencies {
+    implementation(project(':todo-core'))
+    implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
+    implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
+    runtimeOnly("mysql:mysql-connector-java:$mysqlVersion")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testImplementation("io.cucumber:cucumber-java8:$cucumberVersion")
+    testImplementation("io.cucumber:cucumber-junit:$cucumberVersion")
+    testImplementation("io.cucumber:cucumber-junit-platform-engine:$cucumberVersion")
+    testImplementation("io.cucumber:cucumber-spring:$cucumberVersion")
+}
+
+springBoot {
+    mainClass = 'io.github.himcs.todo.api.Bootstrap'
+}

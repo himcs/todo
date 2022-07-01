@@ -9,5 +9,6 @@ coverage {
     excludePackages = [
     ]
     excludeClasses = [
+            "io.github.himcs.todo.core.TodoItem"
     ]
 }

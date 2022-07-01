@@ -10,6 +10,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/todo-api" />
             <option value="$PROJECT_DIR$/todo-cli" />
             <option value="$PROJECT_DIR$/todo-core" />
           </set>
