@@ -5,6 +5,8 @@ import io.github.himcs.todo.core.TodoItem;
 import io.github.himcs.todo.core.TodoItemRepository;
 import io.github.himcs.todo.core.TodoParameter;
 import io.github.himcs.todo.core.TodoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
@@ -12,9 +14,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@Service
 public class TodoServiceImpl implements TodoService {
     private TodoItemRepository todoItemRepository;
 
+    @Autowired
     public TodoServiceImpl(final TodoItemRepository todoItemRepository) {
         this.todoItemRepository = todoItemRepository;
     }
